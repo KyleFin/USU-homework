@@ -1,4 +1,4 @@
-
+//This comment added from ESLC
 #include "maze.h"
 //From current position, return the position inc away in given dir
 Pos Maze::getPos(Pos curr, Dir dir,int inc=1)
