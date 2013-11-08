@@ -1,4 +1,3 @@
-//This comment added from ESLC
 #include "maze.h"
 //From current position, return the position inc away in given dir
 Pos Maze::getPos(Pos curr, Dir dir,int inc=1)
@@ -36,23 +35,23 @@ char Maze::getSymbol(Dir d)
 bool Maze::solveMaze(Pos curr,ofstream & fout)
 {
 	if(curr == final)
+	{
+		mark(curr, '!');
 		return true;
+	}
 //(From Hint) The following method iterates through choices in an enumerated type:
-    for (Dir d = SOUTH; d <=WEST; d = static_cast<Dir>(d+1))
-    {     
+//I changed the order of the enums so we try east and south before north and east (we're starting in the northwest corner)
+    for (Dir d = EAST; d <= NORTH; d = static_cast<Dir>(d+1))
+    {   
+		mark(curr, getSymbol(d));
 		Pos neighbor = getPos(curr, d , 1);
-		if(cell[neighbor.row][neighbor.col] != EMPTY)//|| this is undoing prev move)
+		if(cell[neighbor.row][neighbor.col] != EMPTY)
 			continue;
 		if(solveMaze(neighbor,fout))
-		{
-			mark(curr, getSymbol(d));
 			return true;
-		}
     }
-
-	mark(curr, '@'); // if it doesn't find the path, set curr to '@' and return false
+	mark(curr, VISITED); // if it doesn't find the path, set curr to '@' and return false
 	return false; 
-	
 }
 
 //Create an initial maze as defined by rows and cols
@@ -82,7 +81,22 @@ void Maze::initializeMaze(int rows, int cols)
 
 // Create a maze by randomly removing walls between segments that are NOT already connected
 void Maze::createRandomMaze(int rows, int cols)
-{	
+{//*****************Need to create linked list wallList and unionSet of rooms	
+	//create maze with all walls
+	
+	//put interior walls into wallList and rooms into unionSet
+
+	//remove walls randomly from wallList
+	while(!wallList.isEmpty())
+	{
+		wall = wallList(rand % size);
+		if(find(roomSide1) != find(roomSide2)) //*****make function to test adjacent rooms (for horizontal or vertical walls)
+		{
+			mark(wall, EMPTY);
+			unionSet(roomSide1, roomSide2);
+		}
+		wallList.remove(wall); //size-- as part of remove
+	}
 }
 
 // Create a string version of maze, preceeded by msg.

@@ -1,5 +1,6 @@
 #include "maze.h"
 #include <windows.h>
+#include "DisjointSet.h"
 
 void pause()
 {	cout<<endl<<"press any key to see the result of the created Maze problem";
@@ -10,16 +11,16 @@ int main()
 {   ofstream fout;
    	fout.open("mazeOut.txt");
 	/////////////////////////////////////////////////////////////
-	// Demonstraion of disjoint set                            //
+	// Demonstration of disjoint set                            //
 	/////////////////////////////////////////////////////////////
 	fout<<"****  Disjoint problem  **** "<<endl;
-	/*
+	
 	DisjointSet mySet(10); //create disjoint set
 
 	mySet.unionSets(1,6);
 	mySet.unionSets(6,7);
 	mySet.unionSets(2,3);
-	
+
 	fout<< "3 is a member of =" << mySet.find(3) << endl;
 	fout<< "2 is a member of =" << mySet.find(2) << endl;
 	mySet.unionSets(4,5);
@@ -27,7 +28,7 @@ int main()
 	if(mySet.find(6)==mySet.find(4)) fout<<"6 and 4 are in same class"<<endl;
 	if(mySet.find(7)==mySet.find(4)) fout<<"7 and 4 are in same class"<<endl;
 	cout << mySet.toString();
-	*/
+	
 	////////////////////////////////////////////////////////////
 	// Demonstraion of maze solve problem                     //
 	////////////////////////////////////////////////////////////
@@ -48,14 +49,14 @@ int main()
 	// Demonstraion of creation maze                           //
 	/////////////////////////////////////////////////////////////
     pause();
-
+/*
 	maze2.createRandomMaze(21,23);
 	fout << maze2.toString("\n**MY Created Maze**");
 	cout << maze2.toString("\n**MY Created Maze**");
 	maze2.solveMaze(fout);
     fout << maze2.toString("\n**Solved Maze**",false);
 	cout << maze2.toString("\n**Solved Maze**", false);
-    fout.close();
+ */   fout.close();
 
 return 0;
 }

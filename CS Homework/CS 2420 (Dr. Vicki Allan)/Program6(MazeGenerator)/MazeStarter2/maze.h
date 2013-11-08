@@ -12,7 +12,7 @@
 using namespace std;
 
 enum{WALLUP='|', WALLACROSS= '-', WALLJOINT = '+', EMPTY=' ',VISITED = '@'};
-enum Dir {NORTH, EAST,SOUTH, WEST};
+enum Dir {EAST, SOUTH, WEST, NORTH};
 
 class Maze 
 {
