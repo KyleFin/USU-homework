@@ -1,6 +1,7 @@
 #include "maze.h"
 #include <windows.h>
 #include "DisjointSet.h"
+#include "WallLinkedList.h"
 
 void pause()
 {	cout<<endl<<"press any key to see the result of the created Maze problem";
@@ -13,7 +14,13 @@ int main()
 	/////////////////////////////////////////////////////////////
 	// Demonstration of disjoint set                            //
 	/////////////////////////////////////////////////////////////
-	fout<<"****  Disjoint problem  **** "<<endl;
+	Pos ab(1,3);
+	Pos bc(3,4);
+
+	WallLinkedList a;
+	a.add(ab);
+	a.add(bc);
+/*	fout<<"****  Disjoint problem  **** "<<endl;
 	
 	DisjointSet mySet(10); //create disjoint set
 
@@ -44,7 +51,7 @@ int main()
 	maze1.solveMaze(fout);
 	cout << maze1.toString("\n**Solved Maze**",true);
 	fout << maze1.toString("\n**Solved Maze**",true);
-
+*/
 	/////////////////////////////////////////////////////////////
 	// Demonstraion of creation maze                           //
 	/////////////////////////////////////////////////////////////

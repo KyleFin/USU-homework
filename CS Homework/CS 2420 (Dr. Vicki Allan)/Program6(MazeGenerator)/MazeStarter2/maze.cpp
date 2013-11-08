@@ -87,7 +87,7 @@ void Maze::createRandomMaze(int rows, int cols)
 	//put interior walls into wallList and rooms into unionSet
 
 	//remove walls randomly from wallList
-	while(!wallList.isEmpty())
+/*	while(!wallList.isEmpty())
 	{
 		wall = wallList(rand % size);
 		if(find(roomSide1) != find(roomSide2)) //*****make function to test adjacent rooms (for horizontal or vertical walls)
@@ -96,7 +96,7 @@ void Maze::createRandomMaze(int rows, int cols)
 			unionSet(roomSide1, roomSide2);
 		}
 		wallList.remove(wall); //size-- as part of remove
-	}
+	}*/
 }
 
 // Create a string version of maze, preceeded by msg.

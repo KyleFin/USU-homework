@@ -1,3 +1,6 @@
+#ifndef POS_H
+#define POS_H
+
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -19,3 +22,5 @@ public:
     return out.str();
   };
 };
+
+#endif
