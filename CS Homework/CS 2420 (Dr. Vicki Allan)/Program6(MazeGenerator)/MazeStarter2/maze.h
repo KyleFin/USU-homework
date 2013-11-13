@@ -1,4 +1,8 @@
+#ifndef MAZE_H
+#define MAZE_H
 
+#include "DisjointSet.h"
+#include "WallLinkedList.h"
 #include "Pos.h"
 #include <string>
 #include <assert.h>
@@ -22,6 +26,8 @@ private:
    int maze_rows, maze_cols;  //Size of cell
    char **cell;               // Grid of characters (including walls) of maze
    bool solveMaze(Pos curr,ofstream & fout);
+   bool removeIfBarrier(Pos wall, DisjointSet chamber);  //If there is not a path between the rooms adjacent to wall, remove wall.  Returns false if wall is not a barrier.
+   int roomNum(Pos p);  //Converts the coordinates of p to the room number.  Returns -999 if passed a Pos that is not a room.
    bool isEven(int val){ return ((val%2)==0);}
    void initializeMaze(int rows, int cols);
    char getSymbol(Dir d);
@@ -37,3 +43,5 @@ public:
 	void createRandomMaze(int rows, int cols);
 	bool solveMaze(ofstream & fout){return solveMaze(start,fout);}
 };
+
+#endif

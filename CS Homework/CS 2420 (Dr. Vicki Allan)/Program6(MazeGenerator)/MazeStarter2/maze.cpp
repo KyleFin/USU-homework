@@ -79,24 +79,72 @@ void Maze::initializeMaze(int rows, int cols)
 				cell[i][j] = EMPTY; // if odd and column are even, put space on the position 	}
 }
 
+bool Maze::removeIfBarrier(Pos wall, DisjointSet chamber) //If there is not a path between the rooms adjacent to wall, remove wall (and union rooms).  Returns false if wall is not a barrier.
+{
+	int r = wall.row;
+	int c = wall.col;
+
+	if(cell[r][c] == WALLUP)
+	{
+		Pos left(r, c-1);
+		Pos right(r, c+1);
+		int leftNum = roomNum(left);
+		int rightNum = roomNum(right);
+
+		if(chamber.find(leftNum) == chamber.find(rightNum))
+			return false;
+		mark(wall, EMPTY);
+		chamber.unionSets(leftNum, rightNum);
+		return true;
+	}
+
+	if(cell[r][c] == WALLACROSS)
+	{
+		Pos up(r-1, c);
+		Pos down(r+1, c);
+		int upNum = roomNum(up);
+		int downNum = roomNum(down);
+
+		if(chamber.find(upNum) == chamber.find(downNum))
+			return false;
+		mark(wall, EMPTY);
+		chamber.unionSets(upNum, downNum);
+		return true;
+	}
+	return false; //Wall is neither WALLUP or WALLACROSS
+}
+
+int Maze::roomNum(Pos p)  //Converts the coordinates of p to the room number.  Returns -999 if passed a Pos that is not a room.
+{
+	int r = p.row;
+	int c = p.col;
+
+	if(isEven(r) || isEven(c)) //Not a room
+		return -999;
+	
+	return (r/2)*(maze_cols/2) + (c/2);
+}
+
 // Create a maze by randomly removing walls between segments that are NOT already connected
 void Maze::createRandomMaze(int rows, int cols)
-{//*****************Need to create linked list wallList and unionSet of rooms	
-	//create maze with all walls
-	
-	//put interior walls into wallList and rooms into unionSet
+{	
+	//create maze with all walls DisjointSet large enough for rooms
+	initializeMaze(rows, cols);
+	DisjointSet chamber( (cols/2) * (rows/2) ); 
+
+	//put interior walls into wallList
+	WallLinkedList q;
+	for(int i=1; i<rows-1; i++)
+		for(int j=(i%2)+1; j<cols-1; j+=2)
+			q.add(Pos(i,j));
 
 	//remove walls randomly from wallList
-/*	while(!wallList.isEmpty())
+	srand(time(NULL));
+	while(!q.isEmpty())
 	{
-		wall = wallList(rand % size);
-		if(find(roomSide1) != find(roomSide2)) //*****make function to test adjacent rooms (for horizontal or vertical walls)
-		{
-			mark(wall, EMPTY);
-			unionSet(roomSide1, roomSide2);
-		}
-		wallList.remove(wall); //size-- as part of remove
-	}*/
+		Pos wall = q.remove(rand() % q.getSize());
+		removeIfBarrier(wall, chamber);
+	}
 }
 
 // Create a string version of maze, preceeded by msg.

@@ -10,11 +10,11 @@ void pause()
 
 int main()
 {   ofstream fout;
-  // 	fout.open("mazeOut.txt");
+   	fout.open("mazeOut.txt");
 	/////////////////////////////////////////////////////////////
-	// Demonstration of disjoint set                            //
+	// Demonstration of WallLinkedList                         //
 	/////////////////////////////////////////////////////////////
-	Pos ab(1,3);
+/*	Pos ab(1,3);
 	Pos bc(3,4);
 	Pos dc(2,4);
 	Pos c(7,4);
@@ -29,10 +29,20 @@ int main()
 	a.add(c);
 	a.add(b);
 	cout << a.toString();
-	cout << "Removed " << a.remove(2).toString() << endl;
+	cout << "Removed " << a.remove(3).toString() << endl;
+	cout << "Removed " << a.remove(3).toString() << endl;
+	cout << "Removed " << a.remove(3).toString() << endl;
 	cout << a.toString();
-	pause();
-/*	fout<<"****  Disjoint problem  **** "<<endl;
+	cout << "Removed " << a.remove(3).toString() << endl;
+	cout << "Removed " << a.remove(3).toString() << endl;
+	cout << "Removed " << a.remove(3).toString() << endl;
+	cout << a.toString();
+*/	
+	/////////////////////////////////////////////////////////////
+	// Demonstration of disjoint set                           //
+	/////////////////////////////////////////////////////////////
+
+	fout<<"****  Disjoint problem  **** "<<endl;
 	
 	DisjointSet mySet(10); //create disjoint set
 
@@ -49,7 +59,7 @@ int main()
 	cout << mySet.toString();
 	
 	////////////////////////////////////////////////////////////
-	// Demonstration of maze solve problem                     //
+	// Demonstration of maze solve problem                    //
 	////////////////////////////////////////////////////////////
     pause();
 
@@ -65,17 +75,17 @@ int main()
 	fout << maze1.toString("\n**Solved Maze**",true);
 
 	/////////////////////////////////////////////////////////////
-	// Demonstration of creation maze                           //
+	// Demonstration of creation maze                          //
 	/////////////////////////////////////////////////////////////
-    pause();
-/*
+
 	maze2.createRandomMaze(21,23);
 	fout << maze2.toString("\n**MY Created Maze**");
 	cout << maze2.toString("\n**MY Created Maze**");
 	maze2.solveMaze(fout);
     fout << maze2.toString("\n**Solved Maze**",false);
+	fout << maze2.toString("\n**Solved Maze**",true);
 	cout << maze2.toString("\n**Solved Maze**", false);
     fout.close();
-	*/
+	pause();
 return 0;
 }

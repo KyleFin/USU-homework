@@ -1,4 +1,8 @@
+#ifndef DisjointSet_H
+#define DisjointSet_H
+
 #include <sstream>
+using namespace std;
 
 class DisjointSet
 {
@@ -63,3 +67,5 @@ public:
 		return ss.str();
 	}
 };
+
+#endif
