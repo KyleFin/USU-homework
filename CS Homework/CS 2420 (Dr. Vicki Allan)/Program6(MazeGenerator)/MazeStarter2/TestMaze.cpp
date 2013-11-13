@@ -10,16 +10,28 @@ void pause()
 
 int main()
 {   ofstream fout;
-   	fout.open("mazeOut.txt");
+  // 	fout.open("mazeOut.txt");
 	/////////////////////////////////////////////////////////////
 	// Demonstration of disjoint set                            //
 	/////////////////////////////////////////////////////////////
 	Pos ab(1,3);
 	Pos bc(3,4);
+	Pos dc(2,4);
+	Pos c(7,4);
+	Pos b(99,4);
 
 	WallLinkedList a;
 	a.add(ab);
+	cout << a.toString();
 	a.add(bc);
+	cout << a.toString();
+	a.add(dc);
+	a.add(c);
+	a.add(b);
+	cout << a.toString();
+	cout << "Removed " << a.remove(2).toString() << endl;
+	cout << a.toString();
+	pause();
 /*	fout<<"****  Disjoint problem  **** "<<endl;
 	
 	DisjointSet mySet(10); //create disjoint set
@@ -37,7 +49,7 @@ int main()
 	cout << mySet.toString();
 	
 	////////////////////////////////////////////////////////////
-	// Demonstraion of maze solve problem                     //
+	// Demonstration of maze solve problem                     //
 	////////////////////////////////////////////////////////////
     pause();
 
@@ -51,9 +63,9 @@ int main()
 	maze1.solveMaze(fout);
 	cout << maze1.toString("\n**Solved Maze**",true);
 	fout << maze1.toString("\n**Solved Maze**",true);
-*/
+
 	/////////////////////////////////////////////////////////////
-	// Demonstraion of creation maze                           //
+	// Demonstration of creation maze                           //
 	/////////////////////////////////////////////////////////////
     pause();
 /*
@@ -63,7 +75,7 @@ int main()
 	maze2.solveMaze(fout);
     fout << maze2.toString("\n**Solved Maze**",false);
 	cout << maze2.toString("\n**Solved Maze**", false);
- */   fout.close();
-
+    fout.close();
+	*/
 return 0;
 }
